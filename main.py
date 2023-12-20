@@ -42,12 +42,12 @@ def random():
     print(results)
 
     if results is None:
-        diction1 = {
+        dict = {
         "cafe": [
         ]
         }
     else:
-        diction1 = {
+        dict = {
             "cafe": {
                 "id": results.id,
                 "name": results.name,
@@ -62,7 +62,7 @@ def random():
                 "coffee_price": results.coffee_price
             }
         }
-    return jsonify(diction1)
+    return jsonify(dict)
 
 
 @app.route('/all')
@@ -96,6 +96,7 @@ def all():
 def search():
     location = request.args.get('loc')
     results = db.session.execute(db.select(Cafe_API).where(Cafe_API.location == location)).scalars()
+    print(results)
     diction3 = {
         "cafe": [
         ]
